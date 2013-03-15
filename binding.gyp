@@ -1,4 +1,8 @@
 {
+  'variables': {
+    'homebrew_include%': '<!(brew --prefix)/include',
+    'homebrew_lib%': '<!(brew --prefix)/lib'
+  },
   'targets': [
     {
       'target_name': 'binding',
@@ -11,12 +15,13 @@
           'xcode_settings': {
             'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
           },
-          # add macports include & lib dirs
           'include_dirs': [
             '/opt/local/include',
+            '<(homebrew_include)'
           ],
           'libraries': [
-            '-L/opt/local/lib'
+            '-L/opt/local/lib',
+            '-L<(homebrew_lib)'
           ]
         }],
         ['OS=="linux"', {
